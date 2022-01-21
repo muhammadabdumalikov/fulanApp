@@ -1,3 +1,4 @@
+import "react-native-gesture-handler"
 import React from "react";
 // 1. import `NativeBaseProvider` component
 import { NativeBaseProvider, Text, Box } from "native-base";

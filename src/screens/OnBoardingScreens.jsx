@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
     Dimensions,
     FlatList,
@@ -32,7 +32,6 @@ const slides = [
     },
 ];
 
-// console.log(slides)
 
 const Slide = ({ item }) => {
     return (
@@ -43,8 +42,9 @@ const Slide = ({ item }) => {
     );
 };
 
-const OnBoardingScreen = () => {
+const OnBoardingScreen = ({navigation}) => {
     const [currendSlideIndex, setCurrentSlideIndex] = useState(0);
+    const ref = useRef(null);
 
     const Footer = () => {
         return (
@@ -64,34 +64,70 @@ const OnBoardingScreen = () => {
                     ))}
                 </View>
                 <View style={styles.btnsWrapper}>
-                    <View style={{ flexDirection: "row" }}>
-                        <TouchableOpacity
-                            style={[
-                                styles.btn,
-                                {
-                                    backgroundColor: "transparent",
-                                    borderWidth: 1,
-                                    borderColor: "green",
-                                },
-                            ]}
-                        >
-                            <Text
-                                style={
-                                    ([styles.btnTxt],
-                                    { color: "green", fontWeight: "bold" })
-                                }
+                    {currendSlideIndex == slides.length - 1 ? (
+                        <View style={{height: 50}}>
+                            <TouchableOpacity style={[styles.btn]} onPress={() => navigation.replace("HomeScreen")}>
+                                <Text style={styles.btnTxt}>Get started</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ) : (
+                        <View style={{ flexDirection: "row" }}>
+                            <TouchableOpacity
+                                style={[
+                                    styles.btn,
+                                    {
+                                        backgroundColor: "transparent",
+                                        borderWidth: 1,
+                                        borderColor: "green",
+                                    },
+                                ]}
+                                onPress={skip}
                             >
-                                SKIP
-                            </Text>
-                        </TouchableOpacity>
-                        <View style={{ width: 15 }}></View>
-                        <TouchableOpacity style={[styles.btn]}>
-                            <Text style={styles.btnTxt}>Next</Text>
-                        </TouchableOpacity>
-                    </View>
+                                <Text
+                                    style={
+                                        ([styles.btnTxt],
+                                        { color: "green", fontWeight: "bold" })
+                                    }
+                                >
+                                    SKIP
+                                </Text>
+                            </TouchableOpacity>
+                            <View style={{ width: 15 }}></View>
+                            <TouchableOpacity style={[styles.btn]}>
+                                <Text
+                                    style={styles.btnTxt}
+                                    onPress={goNextSlide}
+                                >
+                                    Next
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    )}
                 </View>
             </View>
         );
+    };
+
+    const updateScrollIndex = (e) => {
+        const contentOffsetX = e.nativeEvent.contentOffset.x;
+        const currenIndex = Math.round(contentOffsetX / width);
+        setCurrentSlideIndex(currenIndex);
+    };
+
+    const goNextSlide = () => {
+        const nextSlideIndex = currendSlideIndex + 1;
+        if (nextSlideIndex != slides.length) {
+            const offset = nextSlideIndex * width;
+            ref?.current?.scrollToOffset({ offset });
+            setCurrentSlideIndex(nextSlideIndex);
+        }
+    };
+
+    const skip = () => {
+        const lastIndex = slides.length - 1;
+        const offset = lastIndex * width;
+        ref?.current?.scrollToOffset({ offset });
+        setCurrentSlideIndex(lastIndex);
     };
 
     return (
@@ -99,10 +135,13 @@ const OnBoardingScreen = () => {
             <StatusBar backgroundColor="blue" />
             <FlatList
                 data={slides}
+                ref={ref}
                 contentContainerStyle={styles.content}
                 showsHorizontalScrollIndicator={false}
                 horizontal
                 renderItem={({ item }) => <Slide item={item} />}
+                onMomentumScrollEnd={updateScrollIndex}
+                pagingEnabled
             />
             <Footer />
         </SafeAreaView>
