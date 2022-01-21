@@ -1,10 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import OnBoardingScreen from "../screens/OnBoardingScreens";
+import HomeScreen from "../screens/HomeScreen";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default Routes = () => {
     return (

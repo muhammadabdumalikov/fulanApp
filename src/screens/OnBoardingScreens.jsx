@@ -1,25 +1,171 @@
-import { SafeAreaView, Text, View } from "react-native";
+import React, { useState } from "react";
+import {
+    Dimensions,
+    FlatList,
+    Image,
+    SafeAreaView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
+} from "react-native";
+import MapSvg from "../../assets/svg/Map";
+
+const { height, width } = Dimensions.get("window");
 
 const slides = [
     {
-        id: 1,
+        id: "1",
         image: require("../../assets/onBoarding/Map.png"),
-        tittle: "Map",
+        tittle: "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form.",
     },
     {
-        id: 2,
+        id: "2",
         image: require("../../assets/onBoarding/Gym.png"),
-        tittle: "Gym",
+        tittle: "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form.",
     },
     {
-        id: 3,
+        id: "3",
         image: require("../../assets/onBoarding/Programing.png"),
-        tittle: "Programming",
+        tittle: "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form.",
     },
 ];
 
-function OnBoardingScreen() {
-    return <SafeAreaView></SafeAreaView>;
-}
+// console.log(slides)
+
+const Slide = ({ item }) => {
+    return (
+        <View style={styles.slide}>
+            <Image source={item.image} style={styles.image} />
+            <Text style={styles.title}>{item.tittle}</Text>
+        </View>
+    );
+};
+
+const OnBoardingScreen = () => {
+    const [currendSlideIndex, setCurrentSlideIndex] = useState(0);
+
+    const Footer = () => {
+        return (
+            <View style={styles.footer}>
+                <View style={styles.line}>
+                    {slides.map((_, index) => (
+                        <View
+                            key={index}
+                            style={[
+                                styles.indicator,
+                                currendSlideIndex == index && {
+                                    backgroundColor: "black",
+                                    width: 25,
+                                },
+                            ]}
+                        ></View>
+                    ))}
+                </View>
+                <View style={styles.btnsWrapper}>
+                    <View style={{ flexDirection: "row" }}>
+                        <TouchableOpacity
+                            style={[
+                                styles.btn,
+                                {
+                                    backgroundColor: "transparent",
+                                    borderWidth: 1,
+                                    borderColor: "green",
+                                },
+                            ]}
+                        >
+                            <Text
+                                style={
+                                    ([styles.btnTxt],
+                                    { color: "green", fontWeight: "bold" })
+                                }
+                            >
+                                SKIP
+                            </Text>
+                        </TouchableOpacity>
+                        <View style={{ width: 15 }}></View>
+                        <TouchableOpacity style={[styles.btn]}>
+                            <Text style={styles.btnTxt}>Next</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </View>
+        );
+    };
+
+    return (
+        <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor="blue" />
+            <FlatList
+                data={slides}
+                contentContainerStyle={styles.content}
+                showsHorizontalScrollIndicator={false}
+                horizontal
+                renderItem={({ item }) => <Slide item={item} />}
+            />
+            <Footer />
+        </SafeAreaView>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    content: {
+        height: "75%",
+    },
+    slide: {
+        flex: 1,
+        width,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    image: {
+        height: "60%",
+        borderColor: "black",
+        resizeMode: "cover",
+    },
+    title: {
+        fontSize: 17,
+        textAlign: "center",
+        maxWidth: "70%",
+        lineHeight: 23,
+    },
+    footer: {
+        height: height * 0.25,
+        justifyContent: "space-between",
+        paddingHorizontal: 20,
+    },
+    line: {
+        flexDirection: "row",
+        justifyContent: "center",
+        marginTop: 20,
+    },
+    indicator: {
+        height: 2.5,
+        width: 10,
+        backgroundColor: "#E5E5E5",
+        marginHorizontal: 3,
+        borderRadius: 2,
+    },
+    btnsWrapper: {
+        marginBottom: 40,
+    },
+    btn: {
+        flex: 1,
+        height: 50,
+        borderRadius: 5,
+        backgroundColor: "green",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    btnTxt: {
+        fontSize: 15,
+        fontWeight: "bold",
+        color: "white",
+    },
+});
 
 export default OnBoardingScreen;
