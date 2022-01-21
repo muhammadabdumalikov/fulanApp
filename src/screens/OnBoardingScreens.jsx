@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     content: {
+        marginTop: 150,
         height: "75%",
     },
     slide: {
@@ -178,7 +179,6 @@ const styles = StyleSheet.create({
         fontSize: 17,
         textAlign: "center",
         maxWidth: "70%",
-        lineHeight: 23,
     },
     footer: {
         height: height * 0.25,
@@ -188,7 +188,6 @@ const styles = StyleSheet.create({
     line: {
         flexDirection: "row",
         justifyContent: "center",
-        marginTop: 20,
     },
     indicator: {
         height: 2.5,
