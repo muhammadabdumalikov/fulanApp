@@ -12,25 +12,33 @@ const Stack = createNativeStackNavigator();
 export default Routes = () => {
     const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);
 
-    useEffect(async () => {
-        const appData = await AsyncStorage.getItem("isAppFirstLaunched");
-        if (appData == null) {
-            setIsAppFirstLaunched(true);
-            await AsyncStorage.setItem("isAppFirstLaunched", "false");
+    useEffect(() => {
+        async function run() {
+            await AsyncStorage.removeItem("isAppFirstLaunched");
 
-        } else {
-            setIsAppFirstLaunched(false);
+            const appData = await AsyncStorage.getItem("isAppFirstLaunched");
+            if (appData == null) {
+                setIsAppFirstLaunched(true);
+                await AsyncStorage.setItem("isAppFirstLaunched", "false");
+            } else {
+                setIsAppFirstLaunched(false);
+            }
         }
+        run();
     }, []);
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-                {isAppFirstLaunched && (
+                {/* {isAppFirstLaunched && (
                     <Stack.Screen
                         name="OnBoardingScreen"
                         component={OnBoardingScreen}
                     />
-                )}
+                )} */}
+                <Stack.Screen
+                    name="OnBoardingScreen"
+                    component={OnBoardingScreen}
+                />
                 <Stack.Screen name="HomeScreen" component={HomeScreen} />
             </Stack.Navigator>
         </NavigationContainer>

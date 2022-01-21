@@ -11,6 +11,7 @@ import {
     View,
 } from "react-native";
 import MapSvg from "../../assets/svg/Map";
+import { colors } from "../constants/colors";
 
 const { height, width } = Dimensions.get("window");
 
@@ -32,7 +33,6 @@ const slides = [
     },
 ];
 
-
 const Slide = ({ item }) => {
     return (
         <View style={styles.slide}>
@@ -42,7 +42,7 @@ const Slide = ({ item }) => {
     );
 };
 
-const OnBoardingScreen = ({navigation}) => {
+const OnBoardingScreen = ({ navigation }) => {
     const [currendSlideIndex, setCurrentSlideIndex] = useState(0);
     const ref = useRef(null);
 
@@ -65,8 +65,13 @@ const OnBoardingScreen = ({navigation}) => {
                 </View>
                 <View style={styles.btnsWrapper}>
                     {currendSlideIndex == slides.length - 1 ? (
-                        <View style={{height: 50}}>
-                            <TouchableOpacity style={[styles.btn]} onPress={() => navigation.replace("HomeScreen")}>
+                        <View style={{ height: 50 }}>
+                            <TouchableOpacity
+                                style={[styles.btn]}
+                                onPress={() =>
+                                    navigation.navigate("HomeScreen")
+                                }
+                            >
                                 <Text style={styles.btnTxt}>Get started</Text>
                             </TouchableOpacity>
                         </View>
@@ -78,7 +83,7 @@ const OnBoardingScreen = ({navigation}) => {
                                     {
                                         backgroundColor: "transparent",
                                         borderWidth: 1,
-                                        borderColor: "green",
+                                        borderColor: colors.brandColor,
                                     },
                                 ]}
                                 onPress={skip}
@@ -86,7 +91,10 @@ const OnBoardingScreen = ({navigation}) => {
                                 <Text
                                     style={
                                         ([styles.btnTxt],
-                                        { color: "green", fontWeight: "bold" })
+                                        {
+                                            color: colors.brandColor,
+                                            fontWeight: "bold",
+                                        })
                                     }
                                 >
                                     SKIP
@@ -195,8 +203,8 @@ const styles = StyleSheet.create({
     btn: {
         flex: 1,
         height: 50,
-        borderRadius: 5,
-        backgroundColor: "green",
+        borderRadius: 10,
+        backgroundColor: colors.brandColor,
         alignItems: "center",
         justifyContent: "center",
     },
