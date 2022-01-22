@@ -1,9 +1,13 @@
-# expo-template-native-base
+# expo own app
 
-The official NativeBase template for [Expo](https://docs.expo.io/)
+Connecting link (https://t.me/MuhammadAbdumalik)
 
 ## Usage
 
 ```sh
-expo init my-app --template expo-template-native-base
+yarn install && yarn start
+
+or
+
+expo install && expo start
 ```
