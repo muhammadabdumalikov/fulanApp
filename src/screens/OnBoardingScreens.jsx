@@ -140,7 +140,7 @@ const OnBoardingScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor="blue" />
+            <StatusBar backgroundColor="grey" />
             <FlatList
                 data={slides}
                 ref={ref}

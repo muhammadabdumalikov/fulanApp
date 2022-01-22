@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import OnBoardingScreen from "../screens/OnBoardingScreens";
 import HomeScreen from "../screens/HomeScreen";
+import DrawerNavigator from "./DrawerNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +28,16 @@ const StackNavigator = () => {
     }, []);
 
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false,
+                headerStyle: {
+                    backgroundColor: "#9AC4F8",
+                },
+                headerTintColor: "white",
+                headerBackTitle: "Back",
+            }}
+        >
             {/* {isAppFirstLaunched && (
             <Stack.Screen
                 name="OnBoardingScreen"
@@ -35,10 +45,14 @@ const StackNavigator = () => {
             />
         )} */}
             <Stack.Screen
+                options={{
+                    headerShown: false,
+                }}
                 name="OnBoardingScreen"
                 component={OnBoardingScreen}
             />
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
+
+            <Stack.Screen name="HomeScreen" component={DrawerNavigator} />
         </Stack.Navigator>
     );
 };
