@@ -191,7 +191,6 @@ const HomeScreen = ({ navigation }) => {
                 renderItem={({ index, item }) => (
                     <CardComponent {...{ index, item, y }} />
                 )}
-                style={styles.list}
                 {...{ onScroll }}
             />
 
@@ -253,10 +252,6 @@ const styles = StyleSheet.create({
         color: "gray",
         marginTop: 20,
         marginBottom: 10,
-    },
-    list: {
-        borderRadius: 12,
-        overflow: "hidden",
     },
 });
 

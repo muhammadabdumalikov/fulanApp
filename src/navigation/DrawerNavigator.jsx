@@ -6,10 +6,11 @@ import UserProfileScreen from "../screens/UserProfileScreen";
 import HomeScreen from "../screens/HomeScreen";
 import CustomDrawer from "../components/CustomDrawer";
 import { colors } from "../constants/colors";
+import { TouchableOpacity } from "react-native";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = () => {
+const DrawerNavigator = ({ navigation }) => {
     return (
         <Drawer.Navigator
             drawerContent={(props) => <CustomDrawer {...props} />}
@@ -51,6 +52,15 @@ const DrawerNavigator = () => {
                             color="black"
                         />
                     ),
+                    // headerLeft: () => (
+                    //     <TouchableOpacity onPress={() => navigation.goBack()}>
+                    //         <Ionicons
+                    //             name="chevron-back-outline"
+                    //             size={24}
+                    //             color="black"
+                    //         />
+                    //     </TouchableOpacity>
+                    // ),
                 }}
             />
         </Drawer.Navigator>
