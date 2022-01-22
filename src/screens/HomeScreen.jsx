@@ -18,6 +18,7 @@ import {
 import { colors } from "../constants/colors";
 import { FlatList } from "react-native-gesture-handler";
 import CardComponent from "../components/CardComponent";
+import MenuSVG from "../../assets/svg/Map";
 
 const data = [
     {
@@ -79,7 +80,8 @@ const HomeScreen = ({ navigation }) => {
         >
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                    <Feather name="menu" size={26} color="black" />
+                    {/* <Feather name="menu" size={26} color="black" /> */}
+                    <MenuSVG />
                 </TouchableOpacity>
                 <Text style={styles.headerTxt}>Fulan</Text>
                 <TouchableOpacity
@@ -96,7 +98,7 @@ const HomeScreen = ({ navigation }) => {
                     style={styles.searchIco}
                     name="search"
                     size={22}
-                    color="black"
+                    color="gray"
                 />
                 <TextInput style={styles.searchTxt} placeholder="Qidirish" />
             </View>
@@ -171,9 +173,9 @@ const HomeScreen = ({ navigation }) => {
                 style={styles.list}
             />
 
-            <TouchableOpacity onPress={() => setIsAboutProjectOpen(true)}>
+            {/* <TouchableOpacity onPress={() => setIsAboutProjectOpen(true)}>
                 <Text>Ok</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </SafeAreaView>
     );
 };
@@ -210,7 +212,6 @@ const styles = StyleSheet.create({
     },
     searchTxt: {
         width: "80%",
-        paddingLeft: 10,
         fontSize: 17,
     },
     about: {
