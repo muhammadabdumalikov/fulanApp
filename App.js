@@ -5,6 +5,9 @@ import Apploading from "expo-app-loading";
 import { NativeBaseProvider, Text, Box } from "native-base";
 
 import Routes from "./src/navigation/Routes";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
+import { Platform, SafeAreaView, StatusBar as NativeStatusBar } from "react-native";
 
 const getFonts = () =>
     Font.loadAsync({
@@ -16,9 +19,15 @@ export default function App() {
 
     if (fontsloaded) {
         return (
-            <NativeBaseProvider>
-                <Routes />
-            </NativeBaseProvider>
+            <SafeAreaView style={{
+                flex: 1,
+                // marginTop: Platform.OS == "android" ? 0 : NativeStatusBar.currentHeight
+            }} >
+                <StatusBar style="auto" />
+                <NativeBaseProvider>
+                    <Routes />
+                </NativeBaseProvider>
+            </SafeAreaView>
         );
     } else {
         return (

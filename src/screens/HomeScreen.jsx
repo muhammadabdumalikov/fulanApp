@@ -6,6 +6,9 @@ import {
     TouchableOpacity,
     StyleSheet,
     TextInput,
+    Animated,
+    StatusBar,
+    Platform,
 } from "react-native";
 import { PresenceTransition, Box, Card } from "native-base";
 
@@ -71,12 +74,26 @@ const data = [
     },
 ];
 
+const AnimatedFlatlist = Animated.createAnimatedComponent(FlatList);
+
 const HomeScreen = ({ navigation }) => {
     const [isAboutProjectOpen, setIsAboutProjectOpen] = React.useState(true);
 
+    const y = new Animated.Value(0);
+    const onScroll = Animated.event(
+        [{ nativeEvent: { contentOffset: { y } } }],
+        {
+            useNativeDriver: true,
+        }
+    );
+
     return (
-        <SafeAreaView
-            style={{ flex: 1, paddingHorizontal: 20, backgroundColor: "white" }}
+        <View
+            style={{
+                flex: 1,
+                paddingHorizontal: 20,
+                backgroundColor: "white",
+            }}
         >
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -165,18 +182,23 @@ const HomeScreen = ({ navigation }) => {
                 Yordam olishni xohlovchi yoshlar ro'yxati
             </Text>
 
-            <FlatList
+            <AnimatedFlatlist
+                scrollEventThrottle={16}
+                bounces={false}
                 showsVerticalScrollIndicator={false}
                 data={data}
                 key={(item) => item.id}
-                renderItem={CardComponent}
+                renderItem={({ index, item }) => (
+                    <CardComponent {...{ index, item, y }} />
+                )}
                 style={styles.list}
+                {...{ onScroll }}
             />
 
             {/* <TouchableOpacity onPress={() => setIsAboutProjectOpen(true)}>
                 <Text>Ok</Text>
             </TouchableOpacity> */}
-        </SafeAreaView>
+        </View>
     );
 };
 
@@ -185,7 +207,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        marginTop: 30,
+        marginTop: Platform.OS == "android" ? 50 : 0,
     },
     headerTxt: {
         fontSize: 20,

@@ -1,11 +1,51 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Animated, Dimensions } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { colors } from "../constants/colors";
 
-const CardComponent = ({ item }) => {
+const CardHeight = 170 + 10 * 2;
+const { height: wHeight } = Dimensions.get("window");
+const height = wHeight - 64;
+
+const CardComponent = ({ index, item, y }) => {
+    const position = Animated.subtract(index * CardHeight, y);
+    const isDisappering = -CardHeight;
+    const isTop = 0;
+    const isBottom = height - CardHeight;
+    const isAppearing = height;
+    const translateY = Animated.add(
+        Animated.add(
+            y,
+            y.interpolate({
+                inputRange: [0, 0.0001 + index * CardHeight],
+                outputRange: [0, -index * CardHeight],
+                extrapolateRight: "clamp",
+            })
+        ),
+        position.interpolate({
+            inputRange: [isBottom, isAppearing],
+            outputRange: [0, -CardHeight / 4],
+            extrapolate: "clamp",
+        })
+    );
+    const scale = position.interpolate({
+        inputRange: [isDisappering, isTop, isBottom, isAppearing],
+        outputRange: [0.5, 1, 1, 0.5],
+        extrapolate: "clamp",
+    });
+    const opacity = position.interpolate({
+        inputRange: [isDisappering, isTop, isBottom, isAppearing],
+        outputRange: [0.5, 1, 1, 0.5],
+    });
+
     return (
-        <View style={styles.box}>
+        <Animated.View
+            style={[
+                styles.box,
+                { opacity, transform: [{ translateY }, { scale }] },
+            ]}
+            key={index}
+        >
             <View style={styles.nameLine}>
                 <Feather name="user" size={26} color={colors.brandColor} />
                 <Text
@@ -39,7 +79,7 @@ const CardComponent = ({ item }) => {
                     >{`${item.summ} so'm`}</Text>
                 </View>
             </View>
-        </View>
+        </Animated.View>
     );
 };
 

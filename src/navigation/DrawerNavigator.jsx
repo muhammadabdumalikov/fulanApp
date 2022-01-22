@@ -29,6 +29,7 @@ const DrawerNavigator = () => {
                 name="Home"
                 component={HomeScreen}
                 options={{
+                    title: "Mening profilim",
                     drawerIcon: ({ color }) => (
                         <Ionicons
                             name="md-person-outline"
@@ -42,6 +43,7 @@ const DrawerNavigator = () => {
                 name="UserProfile"
                 component={UserProfileScreen}
                 options={{
+                    title: "Ilova haqida",
                     drawerIcon: () => (
                         <Ionicons
                             name="md-information-circle-outline"
