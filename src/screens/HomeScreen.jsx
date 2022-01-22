@@ -7,11 +7,72 @@ import {
     StyleSheet,
     TextInput,
 } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { PresenceTransition, Box, Card } from "native-base";
+
+import {
+    Feather,
+    MaterialCommunityIcons,
+    MaterialIcons,
+} from "@expo/vector-icons";
 
 import { colors } from "../constants/colors";
+import { FlatList } from "react-native-gesture-handler";
+import CardComponent from "../components/CardComponent";
+
+const data = [
+    {
+        id: "1",
+        firstName: "Jaloliddin",
+        lastName: "Esonboev",
+        type: "Rasmiy",
+        bDate: "12.03.1999",
+        summ: "15000000",
+    },
+    {
+        id: "2",
+        firstName: "Jaloliddin",
+        lastName: "Esonboev",
+        type: "Rasmiy",
+        bDate: "12.03.1999",
+        summ: "15000000",
+    },
+    {
+        id: "3",
+        firstName: "Jaloliddin",
+        lastName: "Esonboev",
+        type: "Rasmiy",
+        bDate: "12.03.1999",
+        summ: "15000000",
+    },
+    {
+        id: "4",
+        firstName: "Jaloliddin",
+        lastName: "Esonboev",
+        type: "Rasmiy",
+        bDate: "12.03.1999",
+        summ: "15000000",
+    },
+    {
+        id: "5",
+        firstName: "Jaloliddin",
+        lastName: "Esonboev",
+        type: "Rasmiy",
+        bDate: "12.03.1999",
+        summ: "15000000",
+    },
+    {
+        id: "6",
+        firstName: "Jaloliddin",
+        lastName: "Esonboev",
+        type: "Rasmiy",
+        bDate: "12.03.1999",
+        summ: "15000000",
+    },
+];
 
 const HomeScreen = ({ navigation }) => {
+    const [isAboutProjectOpen, setIsAboutProjectOpen] = React.useState(true);
+
     return (
         <SafeAreaView
             style={{ flex: 1, paddingHorizontal: 20, backgroundColor: "white" }}
@@ -32,13 +93,87 @@ const HomeScreen = ({ navigation }) => {
             {/* //Search input ------------------------------------------------ */}
             <View style={styles.searchBox}>
                 <Feather
-                    style={styles.searchIcon}
+                    style={styles.searchIco}
                     name="search"
                     size={22}
                     color="black"
                 />
                 <TextInput style={styles.searchTxt} placeholder="Qidirish" />
             </View>
+
+            {/* About Project Box --------------------------------------------- */}
+            <PresenceTransition
+                visible={isAboutProjectOpen}
+                initial={{
+                    opacity: 0,
+                    scale: 0,
+                }}
+                animate={{
+                    opacity: 1,
+                    scale: 1,
+                    transition: {
+                        duration: 250,
+                    },
+                }}
+            >
+                <Box w="100%" h="160" mt="7" bg="#F9F9F9" rounded="lg" p="16px">
+                    <View style={styles.about}>
+                        <View style={styles.about}>
+                            <MaterialCommunityIcons
+                                name="lightning-bolt"
+                                size={30}
+                                color={colors.brandColor}
+                            />
+                            <Text
+                                style={{
+                                    color: colors.brandColor,
+                                    fontSize: 20,
+                                    fontWeight: "600",
+                                    marginLeft: 10,
+                                }}
+                            >
+                                Loyiha haqida
+                            </Text>
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => setIsAboutProjectOpen(false)}
+                        >
+                            <MaterialIcons
+                                name="cancel"
+                                size={24}
+                                color="#8E8E93"
+                            />
+                        </TouchableOpacity>
+                    </View>
+                    <Text style={styles.aboutTxt}>
+                        <Text style={{ fontWeight: "bold" }}>Fulan</Text> -
+                        loyihasi orqali siz: moliyaviy yordamga muhtoj bo'lgan
+                        yoshlarga moddiy yordam berishingiz mumkin. Ta'minotchi
+                        inson sifatida siz - ushbu yoshlar bilan bog'lanib...
+                        Fulan - loyihasi orqali siz: moliyaviy yordamga muhtoj
+                        bo'lgan yoshlarga moddiy yordam berishingiz mumkin.
+                        Ta'minotchi inson sifatida siz - ushbu yoshlar bilan
+                        bog'lanib...
+                    </Text>
+                </Box>
+            </PresenceTransition>
+
+            {/* Main Screen ------------------------------------------------- */}
+            <Text style={styles.infoTxt}>
+                Yordam olishni xohlovchi yoshlar ro'yxati
+            </Text>
+
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                data={data}
+                key={(item) => item.id}
+                renderItem={CardComponent}
+                style={styles.list}
+            />
+
+            <TouchableOpacity onPress={() => setIsAboutProjectOpen(true)}>
+                <Text>Ok</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 };
@@ -76,7 +211,29 @@ const styles = StyleSheet.create({
     searchTxt: {
         width: "80%",
         paddingLeft: 10,
-        fontSize: 17
+        fontSize: 17,
+    },
+    about: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    aboutTxt: {
+        overflow: "hidden",
+        padding: 5,
+        fontSize: 15,
+        height: "80%",
+    },
+    infoTxt: {
+        fontSize: 15,
+        fontWeight: "400",
+        color: "gray",
+        marginTop: 20,
+        marginBottom: 10,
+    },
+    list: {
+        borderRadius: 12,
+        overflow: "hidden",
     },
 });
 
