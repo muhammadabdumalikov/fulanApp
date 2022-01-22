@@ -37,7 +37,9 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     headerTxt: {
-        fontSize: 20    
+        fontSize: 20,
+        fontFamily: "Roboto",
+        fontWeight: "500"
     },
     profile: {
         backgroundColor: "#EFEFF0",
