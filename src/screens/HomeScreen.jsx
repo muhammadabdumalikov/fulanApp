@@ -5,8 +5,11 @@ import {
     View,
     TouchableOpacity,
     StyleSheet,
+    TextInput,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+
+import { colors } from "../constants/colors";
 
 const HomeScreen = ({ navigation }) => {
     return (
@@ -25,6 +28,17 @@ const HomeScreen = ({ navigation }) => {
                     <Feather name="user" size={26} color="black" />
                 </TouchableOpacity>
             </View>
+
+            {/* //Search input ------------------------------------------------ */}
+            <View style={styles.searchBox}>
+                <Feather
+                    style={styles.searchIcon}
+                    name="search"
+                    size={22}
+                    color="black"
+                />
+                <TextInput style={styles.searchTxt} placeholder="Qidirish" />
+            </View>
         </SafeAreaView>
     );
 };
@@ -39,12 +53,30 @@ const styles = StyleSheet.create({
     headerTxt: {
         fontSize: 20,
         fontFamily: "Roboto",
-        fontWeight: "500"
+        fontWeight: "500",
     },
     profile: {
-        backgroundColor: "#EFEFF0",
-        padding: 4,
-        borderRadius: 17,
+        backgroundColor: colors.gray,
+        padding: 6,
+        borderRadius: 19,
+    },
+    searchBox: {
+        width: "100%",
+        height: 36,
+        backgroundColor: colors.gray,
+        borderRadius: 10,
+        paddingHorizontal: 8,
+        marginTop: 17,
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    searchIco: {
+        width: "10%",
+    },
+    searchTxt: {
+        width: "80%",
+        paddingLeft: 10,
+        fontSize: 17
     },
 });
 
