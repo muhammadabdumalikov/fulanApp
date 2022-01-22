@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Entypo } from "@expo/vector-icons";
 
 import OnBoardingScreen from "../screens/OnBoardingScreens";
-import HomeScreen from "../screens/HomeScreen";
 import DrawerNavigator from "./DrawerNavigator";
+import ToggleDrawer from "../components/toggleDrawer";
 
 const Stack = createNativeStackNavigator();
 
-const StackNavigator = () => {
+const StackNavigator = ({navigation}) => {
     const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);
 
     useEffect(() => {
@@ -30,7 +31,7 @@ const StackNavigator = () => {
     return (
         <Stack.Navigator
             screenOptions={{
-                headerShown: false,
+                // headerShown: false,
                 headerStyle: {
                     backgroundColor: "#9AC4F8",
                 },
@@ -52,7 +53,13 @@ const StackNavigator = () => {
                 component={OnBoardingScreen}
             />
 
-            <Stack.Screen name="HomeScreen" component={DrawerNavigator} />
+            <Stack.Screen
+                name="HomeScreen"
+                component={DrawerNavigator}
+                options={{
+                    headerLeft: () => <ToggleDrawer />,
+                }}
+            />
         </Stack.Navigator>
     );
 };
