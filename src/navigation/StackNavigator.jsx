@@ -8,7 +8,7 @@ import OnBoardingScreen from "../screens/OnBoardingScreens";
 import DrawerNavigator from "./DrawerNavigator";
 import ProfileScreen from "../screens/ProfileScreen";
 import RegisterScreen from "../screens/Register";
-import UserProfileScreen from "../screens/UserProfileScreen";
+import EditProfileScreen from "../screens/EditProfileScreen";
 import AboutUsScreen from "../screens/AboutUsScreen";
 
 const Stack = createNativeStackNavigator();
@@ -67,8 +67,8 @@ const StackNavigator = ({ navigation }) => {
                 options={{
                     title: "Ro'yxatdan o'tish",
                 }}
-                name="UserProfileScreen"
-                component={UserProfileScreen}
+                name="EditProfileScreen"
+                component={EditProfileScreen}
             />
             <Stack.Screen
                 options={{

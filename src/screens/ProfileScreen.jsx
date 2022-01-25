@@ -94,7 +94,7 @@ const ProfileScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 16,
+        paddingHorizontal: 20,
         backgroundColor: "white",
     },
     content: {

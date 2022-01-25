@@ -5,7 +5,7 @@ import {
     ScrollView,
     StyleSheet,
     StatusBar,
-    View
+    View,
 } from "react-native";
 import { Radio, Stack } from "native-base";
 
@@ -15,14 +15,13 @@ import { colors } from "../constants/colors";
 import SendBtn from "../components/SendBtn";
 import MenuSVG from "../../assets/svg/Map";
 
-const UserProfileScreen = ({navigation}) => {
+const EditProfileScreen = ({ navigation }) => {
     const [type, setType] = React.useState();
     return (
         <ScrollView
             style={styles.container}
             showsVerticalScrollIndicator={false}
         >
-
             <Input placeholder="To'liq ism-familiya" />
             <Input placeholder="Telefon raqami" />
             <Input placeholder="Qo'shimcha telefon raqami" />
@@ -154,4 +153,4 @@ const styles = StyleSheet.create({
         color: "rgba(0, 0, 0, 0.3)",
     },
 });
-export default UserProfileScreen;
+export default EditProfileScreen;

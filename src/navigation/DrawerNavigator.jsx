@@ -2,17 +2,17 @@ import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Ionicons } from "@expo/vector-icons";
 
-import UserProfileScreen from "../screens/UserProfileScreen";
 import HomeScreen from "../screens/HomeScreen";
 import CustomDrawer from "../components/CustomDrawer";
 import { colors } from "../constants/colors";
 import { TouchableOpacity } from "react-native";
 import AboutUsScreen from "../screens/AboutUsScreen";
 import MenuSVG from "../../assets/svg/Map";
+import EditProfileScreen from "../screens/EditProfileScreen";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = ({ navigation: StackNavigation }) => {
+const DrawerNavigator = () => {
     return (
         <Drawer.Navigator
             drawerContent={(props) => <CustomDrawer {...props} />}
@@ -44,7 +44,7 @@ const DrawerNavigator = ({ navigation: StackNavigation }) => {
             />
             <Drawer.Screen
                 name="UserProfile"
-                component={UserProfileScreen}
+                component={EditProfileScreen}
                 options={({ navigation }) => ({
                     headerShown: true,
                     title: "Mening profilim",
@@ -68,7 +68,7 @@ const DrawerNavigator = ({ navigation: StackNavigation }) => {
             <Drawer.Screen
                 name="AboutUs"
                 component={AboutUsScreen}
-                options={({navigation}) => ({
+                options={({ navigation }) => ({
                     title: "Ilova haqida",
                     drawerIcon: ({ color }) => (
                         <Ionicons
