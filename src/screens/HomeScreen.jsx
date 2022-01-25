@@ -103,7 +103,7 @@ const HomeScreen = ({ navigation }) => {
                 <Text style={styles.headerTxt}>Fulan</Text>
                 <TouchableOpacity
                     style={styles.profile}
-                    onPress={() => navigation.openDrawer()}
+                    onPress={() => navigation.navigate("UserProfileScreen")}
                 >
                     <Feather name="user" size={26} color="black" />
                 </TouchableOpacity>

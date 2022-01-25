@@ -5,21 +5,24 @@ import {
     ScrollView,
     StyleSheet,
     StatusBar,
+    View
 } from "react-native";
 import { Radio, Stack } from "native-base";
 
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Feather } from "@expo/vector-icons";
 import Input from "../components/InputComponent";
 import { colors } from "../constants/colors";
 import SendBtn from "../components/SendBtn";
+import MenuSVG from "../../assets/svg/Map";
 
-const UserProfileScreen = () => {
+const UserProfileScreen = ({navigation}) => {
     const [type, setType] = React.useState();
     return (
         <ScrollView
             style={styles.container}
             showsVerticalScrollIndicator={false}
         >
+
             <Input placeholder="To'liq ism-familiya" />
             <Input placeholder="Telefon raqami" />
             <Input placeholder="Qo'shimcha telefon raqami" />
@@ -131,8 +134,8 @@ const UserProfileScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: StatusBar.currentHeight,
-        paddingHorizontal: 16,
+        // marginTop: StatusBar.currentHeight,
+        paddingHorizontal: 20,
         paddingVertical: 24,
         backgroundColor: "white",
     },
