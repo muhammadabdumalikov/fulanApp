@@ -25,9 +25,7 @@ const CustomDrawer = (props) => {
                 >
                     Bog'lanish:
                 </Text>
-                <Text
-                    style={{ marginLeft: 16, fontSize: 19 }}
-                >
+                <Text style={{ marginLeft: 16, fontSize: 19 }}>
                     +998910000000
                 </Text>
             </DrawerContentScrollView>
