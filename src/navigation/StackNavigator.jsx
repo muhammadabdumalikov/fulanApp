@@ -9,6 +9,7 @@ import DrawerNavigator from "./DrawerNavigator";
 import ProfileScreen from "../screens/ProfileScreen";
 import RegisterScreen from "../screens/Register";
 import UserProfileScreen from "../screens/UserProfileScreen";
+import AboutUsScreen from "../screens/AboutUsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -62,12 +63,19 @@ const StackNavigator = ({ navigation }) => {
                 name="ProfileScreen"
                 component={ProfileScreen}
             />
-             <Stack.Screen
+            <Stack.Screen
                 options={{
                     title: "Ro'yxatdan o'tish",
                 }}
                 name="UserProfileScreen"
                 component={UserProfileScreen}
+            />
+            <Stack.Screen
+                options={{
+                    title: "Ilova haqida",
+                }}
+                name="AboutUsScreen"
+                component={AboutUsScreen}
             />
         </Stack.Navigator>
     );

@@ -7,6 +7,7 @@ import HomeScreen from "../screens/HomeScreen";
 import CustomDrawer from "../components/CustomDrawer";
 import { colors } from "../constants/colors";
 import { TouchableOpacity } from "react-native";
+import AboutUsScreen from "../screens/AboutUsScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -30,11 +31,11 @@ const DrawerNavigator = ({ navigation }) => {
                 name="Home"
                 component={HomeScreen}
                 options={{
-                    title: "Mening profilim",
+                    title: "Asosiy",
                     drawerIcon: ({ color }) => (
                         <Ionicons
-                            name="md-person-outline"
-                            size={26}
+                            name="ios-home-outline"
+                            size={24}
                             color="black"
                         />
                     ),
@@ -45,10 +46,10 @@ const DrawerNavigator = ({ navigation }) => {
                 component={UserProfileScreen}
                 options={{
                     // headerShown: true,
-                    title: "Ilova haqida",
+                    title: "Mening profilim",
                     drawerIcon: () => (
                         <Ionicons
-                            name="md-information-circle-outline"
+                            name="md-person-outline"
                             size={26}
                             color="black"
                         />
@@ -62,6 +63,20 @@ const DrawerNavigator = ({ navigation }) => {
                     //         />
                     //     </TouchableOpacity>
                     // ),
+                }}
+            />
+            <Drawer.Screen
+                name="AboutUs"
+                component={AboutUsScreen}
+                options={{
+                    title: "Ilova haqida",
+                    drawerIcon: ({ color }) => (
+                        <Ionicons
+                            name="md-information-circle-outline"
+                            size={26}
+                            color="black"
+                        />
+                    ),
                 }}
             />
         </Drawer.Navigator>
