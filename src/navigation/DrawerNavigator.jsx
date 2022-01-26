@@ -44,6 +44,7 @@ const DrawerNavigator = ({ navigation }) => {
                 name="UserProfile"
                 component={UserProfileScreen}
                 options={{
+                    // headerShown: true,
                     title: "Ilova haqida",
                     drawerIcon: () => (
                         <Ionicons

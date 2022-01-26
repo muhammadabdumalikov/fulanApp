@@ -7,6 +7,8 @@ import { Entypo } from "@expo/vector-icons";
 import OnBoardingScreen from "../screens/OnBoardingScreens";
 import DrawerNavigator from "./DrawerNavigator";
 import ProfileScreen from "../screens/ProfileScreen";
+import RegisterScreen from "../screens/Register";
+import UserProfileScreen from "../screens/UserProfileScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,7 +32,7 @@ const StackNavigator = ({ navigation }) => {
 
     return (
         <Stack.Navigator
-            // screenOptions={}
+        // screenOptions={}
         >
             {/* {isAppFirstLaunched && (
             <Stack.Screen
@@ -53,9 +55,20 @@ const StackNavigator = ({ navigation }) => {
                 name="HomeScreen"
                 component={DrawerNavigator}
             />
-            <Stack.Screen options={{
-                title: "Profil"
-            }} name="ProfileScreen" component={ProfileScreen} />
+            <Stack.Screen
+                options={{
+                    title: "Profil",
+                }}
+                name="ProfileScreen"
+                component={ProfileScreen}
+            />
+             <Stack.Screen
+                options={{
+                    title: "Ro'yxatdan o'tish",
+                }}
+                name="UserProfileScreen"
+                component={UserProfileScreen}
+            />
         </Stack.Navigator>
     );
 };
