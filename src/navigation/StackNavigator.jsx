@@ -6,7 +6,7 @@ import { Entypo } from "@expo/vector-icons";
 
 import OnBoardingScreen from "../screens/OnBoardingScreens";
 import DrawerNavigator from "./DrawerNavigator";
-import ProfileScreen from "../screens/Profile";
+import ProfileScreen from "../screens/ProfileScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,14 +30,7 @@ const StackNavigator = ({ navigation }) => {
 
     return (
         <Stack.Navigator
-            screenOptions={{
-                headerShown: false,
-                headerStyle: {
-                    backgroundColor: "#9AC4F8",
-                },
-                headerTintColor: "white",
-                headerBackTitle: "Back",
-            }}
+            // screenOptions={}
         >
             {/* {isAppFirstLaunched && (
             <Stack.Screen
@@ -53,8 +46,16 @@ const StackNavigator = ({ navigation }) => {
                 component={OnBoardingScreen}
             />
 
-            <Stack.Screen name="HomeScreen" component={DrawerNavigator} />
-            <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+            <Stack.Screen
+                options={{
+                    headerShown: false,
+                }}
+                name="HomeScreen"
+                component={DrawerNavigator}
+            />
+            <Stack.Screen options={{
+                title: "Profil"
+            }} name="ProfileScreen" component={ProfileScreen} />
         </Stack.Navigator>
     );
 };
