@@ -23,20 +23,25 @@ const ProfileScreen = () => {
                     <Text style={styles.secondLineTxt}>Rasmiy</Text>
                 </View>
             </View>
+
+            <View style={styles.stateLine}>
+                <Text style={styles.preTxt}>Tug'ilgan yili</Text>
+                <Text style={styles.secondLineTxt}>12.03.1996</Text>
+            </View>
         </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 16
+        paddingHorizontal: 16,
     },
     profilName: {
         fontSize: 22,
         fontWeight: "700",
         // fontFamily: "Roboto",
         marginBottom: 18,
-        marginTop: 28
+        marginTop: 28,
     },
     secondLine: {
         flex: 2,
@@ -44,6 +49,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+        marginBottom: 18
     },
     secondLineTxt: {
         fontSize: 17,
@@ -52,6 +58,13 @@ const styles = StyleSheet.create({
     preTxt: {
         color: "gray",
         fontSize: 15,
+    },
+    stateLine: {
+        paddingVertical: 18,
+        borderTopColor: "gray",
+        borderTopWidth: 0.5,
+        borderBottomColor: "gray",
+        borderBottomWidth: 0.5,
     },
 });
 
