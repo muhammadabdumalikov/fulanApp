@@ -1,6 +1,13 @@
 import React from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import {
+    View,
+    Text,
+    ScrollView,
+    StyleSheet,
+    TouchableOpacity,
+} from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { colors } from "../constants/colors";
 
 const ProfileScreen = () => {
     return (
@@ -27,7 +34,7 @@ const ProfileScreen = () => {
 
             <View style={styles.stateLine}>
                 <Text style={styles.preTxt}>Tug'ilgan viloyati:</Text>
-                <Text style={styles.secondLineTxt}>12.03.1996</Text>
+                <Text style={styles.secondLineTxt}>Surxondaryo</Text>
             </View>
 
             <View style={{ ...styles.stateLine, borderTopWidth: 0 }}>
@@ -67,14 +74,16 @@ const ProfileScreen = () => {
                 </Text>
             </View>
 
-            <View style={styles.stateLine}>
+            <View style={{ ...styles.stateLine, borderBottomWidth: 0 }}>
                 <Text style={styles.preTxt}>Summa:</Text>
                 <Text style={{ fontSize: 22, fontWeight: "700" }}>
                     15 000 000 so'm
                 </Text>
             </View>
 
-            
+            <TouchableOpacity style={styles.seeNumberBtn}>
+                <Text style={styles.seeNumberTxt}>Telefon raqamini ko'rsatish</Text>
+            </TouchableOpacity>
         </ScrollView>
     );
 };
@@ -132,6 +141,20 @@ const styles = StyleSheet.create({
     isAgreeTxt: {
         marginLeft: 10,
     },
+    seeNumberBtn: {
+        height: 60,
+        marginTop: 10,
+        borderRadius: 12,
+        backgroundColor: colors.brandColor,
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 70
+    },
+    seeNumberTxt: {
+        fontSize: 20,
+        fontWeight: "600",
+        color: "white"
+    }
 });
 
 export default ProfileScreen;
