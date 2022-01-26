@@ -1,4 +1,4 @@
 export const colors = {
-    brandColor: "#109796",
+    brandColor: "rgba(16, 151, 150, 1)",
     gray: "#EFEFF0"
 }

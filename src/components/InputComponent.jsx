@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     subTxt: {
         fontStyle: "italic",
         fontSize: 13,
+        color: "rgba(0, 0, 0, 0.3)"
     },
 });
 
