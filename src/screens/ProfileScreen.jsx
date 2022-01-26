@@ -75,14 +75,19 @@ const ProfileScreen = () => {
                 </Text>
             </View>
 
-            <View style={{ ...styles.stateLine, borderBottomWidth: 0 }}>
+            <View
+                style={{
+                    ...styles.stateLine,
+                    borderBottomWidth: 0,
+                }}
+            >
                 <Text style={styles.preTxt}>Summa:</Text>
                 <Text style={{ fontSize: 22, fontWeight: "700" }}>
                     15 000 000 so'm
                 </Text>
             </View>
 
-           <SendBtn text="telefon raqamini ko'rsatish"/>
+            <SendBtn text="Telefon raqamini ko'rsatish" />
         </ScrollView>
     );
 };

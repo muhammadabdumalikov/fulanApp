@@ -1,5 +1,11 @@
 import React from "react";
-import { Text, View, ScrollView, StyleSheet, StatusBar } from "react-native";
+import {
+    Text,
+    TouchableOpacity,
+    ScrollView,
+    StyleSheet,
+    StatusBar,
+} from "react-native";
 import { Radio, Stack } from "native-base";
 
 import { Ionicons } from "@expo/vector-icons";
@@ -10,7 +16,10 @@ import SendBtn from "../components/SendBtn";
 const UserProfileScreen = () => {
     const [type, setType] = React.useState();
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView
+            style={styles.container}
+            showsVerticalScrollIndicator={false}
+        >
             <Input placeholder="To'liq ism-familiya" />
             <Input placeholder="Telefon raqami" />
             <Input placeholder="Qo'shimcha telefon raqami" />
@@ -106,16 +115,16 @@ const UserProfileScreen = () => {
 
             <Input placeholder="Qo'shimcha ma'lumotlar" icon />
 
-            <View style={styles.inputWrapper}>
+            <TouchableOpacity style={styles.inputWrapper}>
                 <Ionicons
                     name="cloud-upload-outline"
                     size={24}
                     color="rgba(0, 0, 0, 0.3)"
                 />
                 <Text style={styles.input}>Passport nusxasini yuklang</Text>
-            </View>
+            </TouchableOpacity>
 
-            <SendBtn text="Ro'yxatdan o'tish"/>
+            <SendBtn text="Ro'yxatdan o'tish" />
         </ScrollView>
     );
 };
@@ -124,6 +133,7 @@ const styles = StyleSheet.create({
     container: {
         marginTop: StatusBar.currentHeight,
         paddingHorizontal: 16,
+        paddingVertical: 24,
         backgroundColor: "white",
     },
     inputWrapper: {
@@ -131,6 +141,7 @@ const styles = StyleSheet.create({
         width: "100%",
         borderBottomWidth: 1,
         borderBottomColor: "rgba(0, 0, 0, 0.1)",
+        marginBottom: 60,
     },
     input: {
         height: 44,
