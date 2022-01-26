@@ -8,25 +8,48 @@ const ProfileScreen = () => {
 
             <View style={styles.secondLine}>
                 <View>
-                    <Text style={styles.preTxt}>Tug'ilgan yili</Text>
+                    <Text style={styles.preTxt}>Tug'ilgan yili:</Text>
                     <Text style={styles.secondLineTxt}>12.03.1996</Text>
                 </View>
                 <View
                     style={{
                         height: "100%",
-                        borderLeftColor: "gray",
-                        borderLeftWidth: 0.5,
+                        borderLeftColor: "rgba(0, 0, 0, 0.1)",
+                        borderLeftWidth: 1,
                     }}
                 />
                 <View>
-                    <Text style={styles.preTxt}>Ta'minot turi</Text>
+                    <Text style={styles.preTxt}>Ta'minot turi:</Text>
                     <Text style={styles.secondLineTxt}>Rasmiy</Text>
                 </View>
             </View>
 
             <View style={styles.stateLine}>
-                <Text style={styles.preTxt}>Tug'ilgan yili</Text>
+                <Text style={styles.preTxt}>Tug'ilgan viloyati:</Text>
                 <Text style={styles.secondLineTxt}>12.03.1996</Text>
+            </View>
+
+            <View style={{ ...styles.stateLine, borderTopWidth: 0 }}>
+                <Text style={styles.preTxt}>
+                    Yordam olishga sababi (qisqa):
+                </Text>
+                <Text style={styles.secondLineTxt}>
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                </Text>
+            </View>
+
+            <View style={{ ...styles.stateLine, borderTopWidth: 0 }}>
+                <Text style={styles.preTxt}>Qo'shimcha ma'lumotlar:</Text>
+                <Text style={styles.secondLineTxt}>
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                </Text>
             </View>
         </ScrollView>
     );
@@ -35,6 +58,7 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 16,
+        backgroundColor: "white",
     },
     profilName: {
         fontSize: 22,
@@ -49,7 +73,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        marginBottom: 18
+        marginBottom: 18,
     },
     secondLineTxt: {
         fontSize: 17,
@@ -61,10 +85,10 @@ const styles = StyleSheet.create({
     },
     stateLine: {
         paddingVertical: 18,
-        borderTopColor: "gray",
-        borderTopWidth: 0.5,
-        borderBottomColor: "gray",
-        borderBottomWidth: 0.5,
+        borderTopColor: "rgba(0, 0, 0, 0.1) ",
+        borderTopWidth: 1,
+        borderBottomColor: "rgba(0, 0, 0, 0.1)",
+        borderBottomWidth: 1,
     },
 });
 
