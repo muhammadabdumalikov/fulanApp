@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { colors } from "../constants/colors";
+import SendBtn from "../components/SendBtn";
 
 const ProfileScreen = () => {
     return (
@@ -81,9 +82,7 @@ const ProfileScreen = () => {
                 </Text>
             </View>
 
-            <TouchableOpacity style={styles.seeNumberBtn}>
-                <Text style={styles.seeNumberTxt}>Telefon raqamini ko'rsatish</Text>
-            </TouchableOpacity>
+           <SendBtn text="telefon raqamini ko'rsatish"/>
         </ScrollView>
     );
 };
@@ -141,20 +140,6 @@ const styles = StyleSheet.create({
     isAgreeTxt: {
         marginLeft: 10,
     },
-    seeNumberBtn: {
-        height: 60,
-        marginTop: 10,
-        borderRadius: 12,
-        backgroundColor: colors.brandColor,
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: 70
-    },
-    seeNumberTxt: {
-        fontSize: 20,
-        fontWeight: "600",
-        color: "white"
-    }
 });
 
 export default ProfileScreen;

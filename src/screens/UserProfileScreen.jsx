@@ -1,8 +1,11 @@
 import React from "react";
 import { Text, View, ScrollView, StyleSheet, StatusBar } from "react-native";
 import { Radio, Stack } from "native-base";
+
+import { Ionicons } from "@expo/vector-icons";
 import Input from "../components/InputComponent";
 import { colors } from "../constants/colors";
+import SendBtn from "../components/SendBtn";
 
 const UserProfileScreen = () => {
     const [type, setType] = React.useState();
@@ -101,8 +104,18 @@ const UserProfileScreen = () => {
                 </Stack>
             </Radio.Group>
 
-            <Input placeholder="Qo'shimcha ma'lumotlar" icon/>
+            <Input placeholder="Qo'shimcha ma'lumotlar" icon />
 
+            <View style={styles.inputWrapper}>
+                <Ionicons
+                    name="cloud-upload-outline"
+                    size={24}
+                    color="rgba(0, 0, 0, 0.3)"
+                />
+                <Text style={styles.input}>Passport nusxasini yuklang</Text>
+            </View>
+
+            <SendBtn text="Ro'yxatdan o'tish"/>
         </ScrollView>
     );
 };
@@ -112,6 +125,19 @@ const styles = StyleSheet.create({
         marginTop: StatusBar.currentHeight,
         paddingHorizontal: 16,
         backgroundColor: "white",
+    },
+    inputWrapper: {
+        flexDirection: "row",
+        width: "100%",
+        borderBottomWidth: 1,
+        borderBottomColor: "rgba(0, 0, 0, 0.1)",
+    },
+    input: {
+        height: 44,
+        width: "100%",
+        marginLeft: 10,
+        fontSize: 17,
+        color: "rgba(0, 0, 0, 0.3)",
     },
 });
 export default UserProfileScreen;
