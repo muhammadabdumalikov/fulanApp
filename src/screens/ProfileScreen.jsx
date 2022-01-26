@@ -1,9 +1,10 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
 const ProfileScreen = () => {
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} containerStyle={styles.content}>
             <Text style={styles.profilName}>Jaloliddin Esonboyev</Text>
 
             <View style={styles.secondLine}>
@@ -40,6 +41,13 @@ const ProfileScreen = () => {
                     Universitetimning to'lov-shartnoma summasini to'lash uchun
                     Universitetimning to'lov-shartnoma summasini to'lash uchun
                     Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
+                    Universitetimning to'lov-shartnoma summasini to'lash uchun
                 </Text>
             </View>
 
@@ -51,6 +59,13 @@ const ProfileScreen = () => {
                     Universitetimning to'lov-shartnoma summasini to'lash uchun
                 </Text>
             </View>
+
+            <View style={{ ...styles.isAgree, borderTopWidth: 0 }}>
+                <Feather name="check" size={24} color="rgba(0, 150, 6, 1)" />
+                <Text style={styles.isAgreeTxt}>
+                    Summa qaytarilishi shartlariga rozi
+                </Text>
+            </View>
         </ScrollView>
     );
 };
@@ -59,6 +74,9 @@ const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 16,
         backgroundColor: "white",
+    },
+    content: {
+        // height: "100%"
     },
     profilName: {
         fontSize: 22,
@@ -82,6 +100,7 @@ const styles = StyleSheet.create({
     preTxt: {
         color: "gray",
         fontSize: 15,
+        marginBottom: 5,
     },
     stateLine: {
         paddingVertical: 18,
@@ -89,6 +108,20 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderBottomColor: "rgba(0, 0, 0, 0.1)",
         borderBottomWidth: 1,
+    },
+    isAgree: {
+        marginVertical: 18,
+        borderTopColor: "rgba(0, 0, 0, 0.1) ",
+        borderTopWidth: 1,
+        backgroundColor: "rgba(0, 150, 6, 0.1)",
+        borderRadius: 24,
+        flexDirection: "row",
+        height: 48,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    isAgreeTxt: {
+        marginLeft: 10,
     },
 });
 
