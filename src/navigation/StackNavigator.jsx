@@ -6,10 +6,11 @@ import { Entypo } from "@expo/vector-icons";
 
 import OnBoardingScreen from "../screens/OnBoardingScreens";
 import DrawerNavigator from "./DrawerNavigator";
+import ProfileScreen from "../screens/Profile";
 
 const Stack = createNativeStackNavigator();
 
-const StackNavigator = ({navigation}) => {
+const StackNavigator = ({ navigation }) => {
     const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);
 
     useEffect(() => {
@@ -52,10 +53,8 @@ const StackNavigator = ({navigation}) => {
                 component={OnBoardingScreen}
             />
 
-            <Stack.Screen
-                name="HomeScreen"
-                component={DrawerNavigator}
-            />
+            <Stack.Screen name="HomeScreen" component={DrawerNavigator} />
+            <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
         </Stack.Navigator>
     );
 };

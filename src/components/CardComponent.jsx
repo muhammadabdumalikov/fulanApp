@@ -7,6 +7,7 @@ import {
     Dimensions,
     Pressable,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { colors } from "../constants/colors";
 
@@ -15,6 +16,8 @@ const { height: wHeight } = Dimensions.get("window");
 const height = wHeight - 64;
 
 const CardComponent = ({ index, item, y }) => {
+    const navigation = useNavigation();
+
     const position = Animated.subtract(index * CardHeight, y);
     const isDisappering = -CardHeight;
     const isTop = 0;
@@ -53,7 +56,7 @@ const CardComponent = ({ index, item, y }) => {
             ]}
             key={index}
         >
-            <Pressable style={styles.box}>
+            <Pressable style={styles.box} onPress={()=> navigation.navigate("ProfileScreen")}>
                 <View style={styles.nameLine}>
                     <Feather name="user" size={26} color={colors.brandColor} />
                     <Text
