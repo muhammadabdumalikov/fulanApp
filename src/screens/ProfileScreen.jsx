@@ -66,6 +66,15 @@ const ProfileScreen = () => {
                     Summa qaytarilishi shartlariga rozi
                 </Text>
             </View>
+
+            <View style={styles.stateLine}>
+                <Text style={styles.preTxt}>Summa:</Text>
+                <Text style={{ fontSize: 22, fontWeight: "700" }}>
+                    15 000 000 so'm
+                </Text>
+            </View>
+
+            
         </ScrollView>
     );
 };
