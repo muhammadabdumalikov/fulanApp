@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Text,
     TouchableOpacity,
@@ -16,13 +16,24 @@ import SendBtn from "../components/SendBtn";
 import MenuSVG from "../../assets/svg/Map";
 
 const EditProfileScreen = ({ navigation }) => {
-    const [type, setType] = React.useState();
+    const [type, setType] = useState();
+    const [fullName, setFullName] = useState();
+    const [phone, setPhone] = useState();
+    const [secondPhone, setSecondPhone] = useState();
+    const [state, setState] = useState();
+    const [text, setText] = useState();
+    const [summ, setSumm] = useState();
+
     return (
         <ScrollView
             style={styles.container}
             showsVerticalScrollIndicator={false}
         >
-            <Input placeholder="To'liq ism-familiya" />
+            <Input
+                placeholder="To'liq ism-familiya"
+                onChange={(value) => setFullName(value)}
+                value={fullName}
+            />
             <Input placeholder="Telefon raqami" />
             <Input placeholder="Qo'shimcha telefon raqami" />
             <Input placeholder="Qaysi viloyatda tug'ilgansiz?" />
@@ -133,7 +144,6 @@ const EditProfileScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        // marginTop: StatusBar.currentHeight,
         paddingHorizontal: 20,
         paddingVertical: 24,
         backgroundColor: "white",

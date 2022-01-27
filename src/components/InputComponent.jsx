@@ -9,8 +9,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import { colors } from "../constants/colors";
 
-const Input = ({ placeholder, subTxt }) => {
-    const [value, setValue] = React.useState("");
+const Input = ({ placeholder, subTxt, onChange, onEnd, value }) => {
     return (
         <View style={styles.inputWrapper}>
             <View
@@ -26,9 +25,11 @@ const Input = ({ placeholder, subTxt }) => {
                 <TextInput
                     style={styles.input}
                     placeholder={`${placeholder}`}
-                    onChange={(val) => setValue(val)}
+                    onChangeText={onChange}
+                    onEndEditing={onEnd}
+                    value={value}
                 />
-                {value.length > 0 ? (
+                {value ? (
                     <TouchableOpacity>
                         <MaterialIcons
                             name="cancel"
