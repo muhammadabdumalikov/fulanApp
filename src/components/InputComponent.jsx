@@ -1,10 +1,43 @@
 import React from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import {
+    View,
+    Text,
+    TextInput,
+    StyleSheet,
+    TouchableOpacity,
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import { colors } from "../constants/colors";
 
 const Input = ({ placeholder, subTxt }) => {
+    const [value, setValue] = React.useState("");
     return (
         <View style={styles.inputWrapper}>
-            <TextInput style={styles.input} placeholder={`${placeholder}`} />
+            <View
+                style={{
+                    flexDirection: "row",
+                    width: "100%",
+                    borderBottomWidth: 1,
+                    borderBottomColor: "rgba(0, 0, 0, 0.1)",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                }}
+            >
+                <TextInput
+                    style={styles.input}
+                    placeholder={`${placeholder}`}
+                    onChange={(val) => setValue(val)}
+                />
+                {value.length > 0 ? (
+                    <TouchableOpacity>
+                        <MaterialIcons
+                            name="cancel"
+                            size={22}
+                            color="rgba(142, 142, 147, 1)"
+                        />
+                    </TouchableOpacity>
+                ) : null}
+            </View>
             {subTxt && <Text style={styles.subTxt}>{`${subTxt}`}</Text>}
         </View>
     );
@@ -12,19 +45,18 @@ const Input = ({ placeholder, subTxt }) => {
 
 const styles = StyleSheet.create({
     inputWrapper: {
-        marginBottom: 14
+        marginBottom: 14,
+        width: "100%",
     },
     input: {
         height: 44,
-        borderBottomWidth: 1,
-        borderBottomColor: "rgba(0, 0, 0, 0.1)",
         marginBottom: 6,
         fontSize: 17,
     },
     subTxt: {
         fontStyle: "italic",
         fontSize: 13,
-        color: "rgba(0, 0, 0, 0.3)"
+        color: "rgba(0, 0, 0, 0.3)",
     },
 });
 
