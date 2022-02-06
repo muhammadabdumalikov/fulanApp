@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     SafeAreaView,
+    TextInput,
     Text,
     View,
     TouchableOpacity,
     StyleSheet,
-    TextInput,
+    ActivityIndicator,
     Animated,
     StatusBar,
     Platform,
@@ -78,6 +79,8 @@ const AnimatedFlatlist = Animated.createAnimatedComponent(FlatList);
 
 const HomeScreen = ({ navigation }) => {
     const [isAboutProjectOpen, setIsAboutProjectOpen] = React.useState(true);
+    const [data, setData] = useState();
+    const [isLoading, setLoading] = useState(true);
 
     const y = new Animated.Value(0);
     const onScroll = Animated.event(
@@ -87,117 +90,184 @@ const HomeScreen = ({ navigation }) => {
         }
     );
 
-    return (
-        <View
-            style={{
-                flex: 1,
-                paddingHorizontal: 20,
-                backgroundColor: "white",
-            }}
-        >
-            <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                    {/* <Feather name="menu" size={26} color="black" /> */}
-                    <MenuSVG />
-                </TouchableOpacity>
-                <Text style={styles.headerTxt}>Fulan</Text>
-                <TouchableOpacity
-                    style={styles.profile}
-                    onPress={() => navigation.navigate("EditProfileScreen")}
-                >
-                    <Feather name="user" size={26} color="black" />
-                </TouchableOpacity>
-            </View>
-
-            {/* //Search input ------------------------------------------------ */}
-            <View style={styles.searchBox}>
-                <Feather
-                    style={styles.searchIco}
-                    name="search"
-                    size={22}
-                    color="gray"
-                />
-                <TextInput style={styles.searchTxt} placeholder="Qidirish" />
-            </View>
-
-            {/* About Project Box --------------------------------------------- */}
-            <PresenceTransition
-                visible={isAboutProjectOpen}
-                initial={{
-                    opacity: 0,
-                    scale: 0,
-                }}
-                animate={{
-                    opacity: 1,
-                    scale: 1,
-                    transition: {
-                        duration: 250,
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                let data = await fetch("https://fulan.pixer.uz/api/users", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
                     },
-                }}
-            >
-                <Box w="100%" h="160" mt="7" bg="#F9F9F9" rounded="lg" p="16px">
-                    <View style={styles.about}>
-                        <View style={styles.about}>
-                            <MaterialCommunityIcons
-                                name="lightning-bolt"
-                                size={30}
-                                color={colors.brandColor}
-                            />
-                            <Text
-                                style={{
-                                    color: colors.brandColor,
-                                    fontSize: 20,
-                                    fontWeight: "600",
-                                    marginLeft: 10,
-                                }}
-                            >
-                                Loyiha haqida
-                            </Text>
-                        </View>
+                });
+                let jsonData = await data.json();
+
+                setData(jsonData.data);
+                // setData(jsonData);
+                // navigation.setOptions({
+                //     title: `ID: @${client.clients[0].clientId}`,
+                // });
+
+                setLoading(false);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    return (
+        <>
+            {isLoading ? (
+                <View
+                    style={{
+                        flex: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <ActivityIndicator
+                        size="large"
+                        color="#2196F3"
+                        style={{ alignSelf: "center" }}
+                    />
+                </View>
+            ) : (
+                <View
+                    style={{
+                        flex: 1,
+                        paddingHorizontal: 20,
+                        backgroundColor: "white",
+                    }}
+                >
+                    <View style={styles.header}>
                         <TouchableOpacity
-                            onPress={() => setIsAboutProjectOpen(false)}
+                            onPress={() => navigation.openDrawer()}
                         >
-                            <MaterialIcons
-                                name="cancel"
-                                size={24}
-                                color="#8E8E93"
-                            />
+                            {/* <Feather name="menu" size={26} color="black" /> */}
+                            <MenuSVG />
+                        </TouchableOpacity>
+                        <Text style={styles.headerTxt}>Fulan</Text>
+                        <TouchableOpacity
+                            style={styles.profile}
+                            onPress={() =>
+                                navigation.navigate("EditProfileScreen")
+                            }
+                        >
+                            <Feather name="user" size={26} color="black" />
                         </TouchableOpacity>
                     </View>
-                    <Text style={styles.aboutTxt}>
-                        <Text style={{ fontWeight: "bold" }}>Fulan</Text> -
-                        loyihasi orqali siz: moliyaviy yordamga muhtoj bo'lgan
-                        yoshlarga moddiy yordam berishingiz mumkin. Ta'minotchi
-                        inson sifatida siz - ushbu yoshlar bilan bog'lanib...
-                        Fulan - loyihasi orqali siz: moliyaviy yordamga muhtoj
-                        bo'lgan yoshlarga moddiy yordam berishingiz mumkin.
-                        Ta'minotchi inson sifatida siz - ushbu yoshlar bilan
-                        bog'lanib...
+
+                    {/* //Search input ------------------------------------------------ */}
+                    <View style={styles.searchBox}>
+                        <Feather
+                            style={styles.searchIco}
+                            name="search"
+                            size={22}
+                            color="gray"
+                        />
+                        <TextInput
+                            style={styles.searchTxt}
+                            placeholder="Qidirish"
+                        />
+                    </View>
+
+                    {/* About Project Box --------------------------------------------- */}
+                    <PresenceTransition
+                        visible={isAboutProjectOpen}
+                        initial={{
+                            opacity: 0,
+                            scale: 0,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            scale: 1,
+                            transition: {
+                                duration: 250,
+                            },
+                        }}
+                    >
+                        <Box
+                            w="100%"
+                            h="160"
+                            mt="7"
+                            bg="#F9F9F9"
+                            rounded="lg"
+                            p="16px"
+                        >
+                            <View style={styles.about}>
+                                <View style={styles.about}>
+                                    <MaterialCommunityIcons
+                                        name="lightning-bolt"
+                                        size={30}
+                                        color={colors.brandColor}
+                                    />
+                                    <Text
+                                        style={{
+                                            color: colors.brandColor,
+                                            fontSize: 20,
+                                            fontWeight: "600",
+                                            marginLeft: 10,
+                                        }}
+                                    >
+                                        Loyiha haqida
+                                    </Text>
+                                </View>
+                                <TouchableOpacity
+                                    onPress={() => setIsAboutProjectOpen(false)}
+                                >
+                                    <MaterialIcons
+                                        name="cancel"
+                                        size={24}
+                                        color="#8E8E93"
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                            <Text style={styles.aboutTxt}>
+                                <Text style={{ fontWeight: "bold" }}>
+                                    Fulan
+                                </Text>{" "}
+                                - loyihasi orqali siz: moliyaviy yordamga muhtoj
+                                bo'lgan yoshlarga moddiy yordam berishingiz
+                                mumkin. Ta'minotchi inson sifatida siz - ushbu
+                                yoshlar bilan bog'lanib... Fulan - loyihasi
+                                orqali siz: moliyaviy yordamga muhtoj bo'lgan
+                                yoshlarga moddiy yordam berishingiz mumkin.
+                                Ta'minotchi inson sifatida siz - ushbu yoshlar
+                                bilan bog'lanib...
+                            </Text>
+                        </Box>
+                    </PresenceTransition>
+
+                    {/* Main Screen ------------------------------------------------- */}
+                    <Text style={styles.infoTxt}>
+                        Yordam olishni xohlovchi yoshlar ro'yxati
                     </Text>
-                </Box>
-            </PresenceTransition>
 
-            {/* Main Screen ------------------------------------------------- */}
-            <Text style={styles.infoTxt}>
-                Yordam olishni xohlovchi yoshlar ro'yxati
-            </Text>
+                    {data.length > 1 ? (
+                        <View>
+                            <Text>Empty</Text>
+                        </View>
+                    ) : (
+                        <AnimatedFlatlist
+                            scrollEventThrottle={16}
+                            bounces={false}
+                            showsVerticalScrollIndicator={false}
+                            data={data}
+                            key={(item) => item.id}
+                            renderItem={({ index, item }) => (
+                                <CardComponent {...{ index, item, y }} />
+                            )}
+                            {...{ onScroll }}
+                        />
+                    )}
 
-            <AnimatedFlatlist
-                scrollEventThrottle={16}
-                bounces={false}
-                showsVerticalScrollIndicator={false}
-                data={data}
-                key={(item) => item.id}
-                renderItem={({ index, item }) => (
-                    <CardComponent {...{ index, item, y }} />
-                )}
-                {...{ onScroll }}
-            />
-
-            {/* <TouchableOpacity onPress={() => setIsAboutProjectOpen(true)}>
+                    {/* <TouchableOpacity onPress={() => setIsAboutProjectOpen(true)}>
                 <Text>Ok</Text>
             </TouchableOpacity> */}
-        </View>
+                </View>
+            )}
+        </>
     );
 };
 
