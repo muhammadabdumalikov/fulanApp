@@ -48,6 +48,8 @@ const CardComponent = ({ index, item, y }) => {
         outputRange: [0.5, 1, 1, 0.5],
     });
 
+    // console.log(item, 22222222222)
+
     return (
         <Animated.View
             style={[
@@ -61,7 +63,7 @@ const CardComponent = ({ index, item, y }) => {
                     <Feather name="user" size={26} color={colors.brandColor} />
                     <Text
                         style={styles.nameTxt}
-                    >{`${item.firstName} ${item.lastName}`}</Text>
+                    >{`${item.first_name} ${item.last_name}`}</Text>
                 </View>
 
                 <View style={styles.secondLine}>
@@ -82,7 +84,7 @@ const CardComponent = ({ index, item, y }) => {
                         <Text style={styles.preTxt}>Ta'minot turi</Text>
                         <Text
                             style={styles.secondLineTxt}
-                        >{`${item.type}`}</Text>
+                        >{`${item.provide_type}`}</Text>
                     </View>
                 </View>
 

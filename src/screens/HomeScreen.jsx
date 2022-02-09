@@ -106,7 +106,6 @@ const HomeScreen = ({ navigation }) => {
                 // navigation.setOptions({
                 //     title: `ID: @${client.clients[0].clientId}`,
                 // });
-
                 setLoading(false);
             } catch (error) {
                 console.log(error);
@@ -116,6 +115,7 @@ const HomeScreen = ({ navigation }) => {
         fetchData();
     }, []);
 
+    // console.log(data);
     return (
         <>
             {isLoading ? (
@@ -254,7 +254,10 @@ const HomeScreen = ({ navigation }) => {
                             bounces={false}
                             showsVerticalScrollIndicator={false}
                             data={data}
-                            key={(item) => item.id}
+                            key={(item) => {
+                                console.log(item);
+                                return item.user_id;
+                            }}
                             renderItem={({ index, item }) => (
                                 <CardComponent {...{ index, item, y }} />
                             )}
