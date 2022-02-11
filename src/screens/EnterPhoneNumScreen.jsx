@@ -39,7 +39,7 @@ export default function EnterPhoneNumScreen({ navigation, route }) {
                         style={styles.continueWrapper}
                         onPress={async () => {
                             try {
-                                console.log(typeof phone)
+                                console.log(phone);
                                 if (phone.length > 11) {
                                     let code = await fetch(
                                         "https://fulan.pixer.uz/api/users/account",
@@ -49,9 +49,9 @@ export default function EnterPhoneNumScreen({ navigation, route }) {
                                                 "Content-Type":
                                                     "application/json",
                                             },
-                                            body: {
+                                            body: JSON.stringify({
                                                 user_phone: phone,
-                                            },
+                                            }),
                                         }
                                     );
                                     console.log(await code.json());
