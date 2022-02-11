@@ -39,9 +39,8 @@ export default function EnterPhoneNumScreen({ navigation, route }) {
                         style={styles.continueWrapper}
                         onPress={async () => {
                             try {
-                                console.log(phone);
                                 if (phone.length > 11) {
-                                    let code = await fetch(
+                                    let data = await fetch(
                                         "https://fulan.pixer.uz/api/users/account",
                                         {
                                             method: "POST",
@@ -54,10 +53,16 @@ export default function EnterPhoneNumScreen({ navigation, route }) {
                                             }),
                                         }
                                     );
-                                    console.log(await code.json());
-                                    // navigation.navigate("EnterOTPScreen", {
-                                    //     phone: phone,
-                                    // });
+                                    const code = await data.json();
+
+                                    console.log(code);
+
+                                    if (code.ok === true) {
+                                        navigation.navigate("EnterOTPScreen", {
+                                            phone: phone,
+                                            id: code.data.id
+                                        });
+                                    }
                                 }
                             } catch (error) {
                                 console.log(error);

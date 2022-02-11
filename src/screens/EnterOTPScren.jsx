@@ -16,13 +16,14 @@ import { colors } from "../constants/colors";
 
 export default function EnterOTPScreen({ navigation, route }) {
     let phoneNumber = route.params.phone;
+    let validationId = route.params.id;
     let firstInput = useRef();
     let secondInput = useRef();
     let thirdInput = useRef();
     let fourthInput = useRef();
     let fifthInput = useRef();
     let sixthInput = useRef();
-    let [otp, setOtp] = useState({ 1: "", 2: "", 3: "", 4: "", 5: "", 6: "" });
+    let [otp, setOtp] = useState({ 1: "", 2: "", 3: "", 4: "", 5: "" });
     let [resendOtp, setResendOtp] = useState(true);
 
     // useEffect(()=> {
@@ -161,22 +162,8 @@ export default function EnterOTPScreen({ navigation, route }) {
                                         onChangeText={(text) => {
                                             setOtp({ ...otp, 5: text });
 
-                                            text
-                                                ? sixthInput.current.focus()
-                                                : fourthInput.current.focus();
-                                        }}
-                                    />
-                                </View>
-                                <View style={styles.otpBox}>
-                                    <TextInput
-                                        style={styles.otpTxt}
-                                        keyboardType="number-pad"
-                                        maxLength={1}
-                                        ref={sixthInput}
-                                        onChangeText={(text) => {
-                                            setOtp({ ...otp, 6: text });
-
-                                            !text && fifthInput.current.focus();
+                                            !text &&
+                                                fourthInput.current.focus();
                                         }}
                                     />
                                 </View>
@@ -190,11 +177,26 @@ export default function EnterOTPScreen({ navigation, route }) {
 
                     <Pressable
                         style={styles.continueWrapper}
-                        onPress={() => {
-                            console.log(
-                                `${otp["1"]}${otp["2"]}${otp["3"]}${otp["4"]}${otp["5"]}${otp["6"]}`
+                        onPress={async () => {
+                            let data = await fetch(
+                                "https://fulan.pixer.uz/api/users/code",
+                                {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        "code-validation-id": validationId,
+                                    },
+                                    body: JSON.stringify({
+                                        validation_code: `${otp["1"]}${otp["2"]}${otp["3"]}${otp["4"]}${otp["5"]}`,
+                                    }),
+                                }
                             );
-                            navigation.navigate("EnterOwnPasswordScreen");
+
+                            let message = await data.json();
+
+                            if (message.ok === true) {
+                                navigation.navigate("HomeScreen");
+                            }
                         }}
                     >
                         <Text style={styles.continue}>Davom etish</Text>
