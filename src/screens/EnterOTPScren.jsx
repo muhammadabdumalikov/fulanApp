@@ -49,7 +49,7 @@ export default function EnterOTPScreen({ navigation, route }) {
                         <View style={styles.timer}>
                             <CountDown
                                 size={32}
-                                until={5}
+                                until={90}
                                 onFinish={() => {
                                     setTimeout(() => {
                                         setResendOtp(false);
@@ -59,12 +59,10 @@ export default function EnterOTPScreen({ navigation, route }) {
                                     color: "black",
                                     fontSize: 32,
                                     fontWeight: "400",
-                                    backgroundColor: "red",
                                 }}
                                 digitStyle={{
                                     height: 20,
-                                    width: 88,
-                                    // backgroundColor: "green"
+                                    width: 50,
                                 }}
                                 style={{
                                     justifyContent: "center",
@@ -84,6 +82,7 @@ export default function EnterOTPScreen({ navigation, route }) {
                                 flexDirection: "row",
                                 alignItems: "center",
                                 marginHorizontal: 24,
+                                marginTop: 8
                             }}
                         >
                             <Text style={styles.phoneNum}>
