@@ -31,13 +31,37 @@ export default function EnterPhoneNumScreen({ navigation, route }) {
                             placeholder="Telefon raqamingiz"
                             keyboardType="phone-pad"
                             onChange={(value) => setPhone(value)}
+                            maxLength={12}
                         />
                     </View>
 
                     <Pressable
                         style={styles.continueWrapper}
-                        onPress={() => {
-                            navigation.navigate("EnterOTPScreen");
+                        onPress={async () => {
+                            try {
+                                console.log(typeof phone)
+                                if (phone.length > 11) {
+                                    let code = await fetch(
+                                        "https://fulan.pixer.uz/api/users/account",
+                                        {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            body: {
+                                                user_phone: phone,
+                                            },
+                                        }
+                                    );
+                                    console.log(await code.json());
+                                    // navigation.navigate("EnterOTPScreen", {
+                                    //     phone: phone,
+                                    // });
+                                }
+                            } catch (error) {
+                                console.log(error);
+                            }
                         }}
                     >
                         <Text style={styles.continue}>Davom etish</Text>

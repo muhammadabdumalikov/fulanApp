@@ -15,7 +15,7 @@ import CountDown from "react-native-countdown-component";
 import { colors } from "../constants/colors";
 
 export default function EnterOTPScreen({ navigation, route }) {
-    // let phoneNumber = route.params.phone;
+    let phoneNumber = route.params.phone;
     let firstInput = useRef();
     let secondInput = useRef();
     let thirdInput = useRef();
@@ -86,7 +86,7 @@ export default function EnterOTPScreen({ navigation, route }) {
                         >
                             <Text style={styles.phoneNum}>
                                 {" "}
-                                +{`${122333}`}{" "}
+                                +{`${phoneNumber}`}{" "}
                             </Text>
                             <Text style={styles.msg}>
                                 raqamiga sms kod yuborildi

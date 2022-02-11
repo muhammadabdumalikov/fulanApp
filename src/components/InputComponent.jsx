@@ -7,7 +7,6 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { colors } from "../constants/colors";
 
 const Input = ({
     placeholder,
@@ -16,6 +15,7 @@ const Input = ({
     onEnd,
     value,
     keyboardType = "default",
+    maxLength
 }) => {
     return (
         <View style={styles.inputWrapper}>
@@ -35,6 +35,7 @@ const Input = ({
                     onChangeText={onChange}
                     onEndEditing={onEnd}
                     value={value}
+                    maxLength={maxLength}
                     keyboardType={keyboardType}
                 />
                 {value ? (
