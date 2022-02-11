@@ -11,6 +11,7 @@ import RegisterScreen from "../screens/Register";
 import EditProfileScreen from "../screens/EditProfileScreen";
 import AboutUsScreen from "../screens/AboutUsScreen";
 import EnterOTPScreen from "../screens/EnterOTPScren";
+import EnterPhoneNumScreen from "../screens/EnterPhoneNumScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -63,6 +64,13 @@ const StackNavigator = ({ navigation }) => {
                 }}
                 name="ProfileScreen"
                 component={ProfileScreen}
+            />
+            <Stack.Screen
+                options={{
+                    headerShown: false,
+                }}
+                name="EnterPhoneNumScreen"
+                component={EnterPhoneNumScreen}
             />
             <Stack.Screen
                 options={{

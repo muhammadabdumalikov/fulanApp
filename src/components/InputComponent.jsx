@@ -9,7 +9,14 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import { colors } from "../constants/colors";
 
-const Input = ({ placeholder, subTxt, onChange, onEnd, value }) => {
+const Input = ({
+    placeholder,
+    subTxt,
+    onChange,
+    onEnd,
+    value,
+    keyboardType = "default",
+}) => {
     return (
         <View style={styles.inputWrapper}>
             <View
@@ -28,6 +35,7 @@ const Input = ({ placeholder, subTxt, onChange, onEnd, value }) => {
                     onChangeText={onChange}
                     onEndEditing={onEnd}
                     value={value}
+                    keyboardType={keyboardType}
                 />
                 {value ? (
                     <TouchableOpacity>

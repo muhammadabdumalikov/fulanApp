@@ -151,7 +151,7 @@ const HomeScreen = ({ navigation }) => {
                         <TouchableOpacity
                             style={styles.profile}
                             onPress={() =>
-                                navigation.navigate("EnterOTPScreen")
+                                navigation.navigate("EnterPhoneNumScreen")
                             }
                         >
                             <Feather name="user" size={26} color="black" />
