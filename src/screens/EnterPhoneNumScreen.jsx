@@ -1,14 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import {
     View,
     Text,
     StyleSheet,
-    Dimensions,
     Pressable,
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
     Keyboard,
-    TextInput,
 } from "react-native";
 import Input from "../components/InputComponent";
 

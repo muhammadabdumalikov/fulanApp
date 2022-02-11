@@ -11,7 +11,6 @@ import {
     TextInput,
 } from "react-native";
 import CountDown from "react-native-countdown-component";
-import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 import { colors } from "../constants/colors";
 
@@ -43,7 +42,7 @@ export default function EnterOTPScreen({ navigation, route }) {
         >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
-                    <View style={{marginTop: 24}}>
+                    <View style={{ marginTop: 24 }}>
                         <Text style={styles.txt}>Ro'yxatdan o'tish</Text>
 
                         <View style={styles.timer}>
@@ -82,7 +81,7 @@ export default function EnterOTPScreen({ navigation, route }) {
                                 flexDirection: "row",
                                 alignItems: "center",
                                 marginHorizontal: 24,
-                                marginTop: 8
+                                marginTop: 8,
                             }}
                         >
                             <Text style={styles.phoneNum}>
