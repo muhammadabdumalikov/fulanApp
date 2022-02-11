@@ -10,6 +10,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import RegisterScreen from "../screens/Register";
 import EditProfileScreen from "../screens/EditProfileScreen";
 import AboutUsScreen from "../screens/AboutUsScreen";
+import EnterOTPScreen from "../screens/EnterOTPScren";
 
 const Stack = createNativeStackNavigator();
 
@@ -62,6 +63,13 @@ const StackNavigator = ({ navigation }) => {
                 }}
                 name="ProfileScreen"
                 component={ProfileScreen}
+            />
+            <Stack.Screen
+                options={{
+                    headerShown: false,
+                }}
+                name="EnterOTPScreen"
+                component={EnterOTPScreen}
             />
             <Stack.Screen
                 options={{

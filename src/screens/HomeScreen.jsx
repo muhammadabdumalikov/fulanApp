@@ -115,7 +115,7 @@ const HomeScreen = ({ navigation }) => {
         fetchData();
     }, []);
 
-    // console.log(data);
+    // console.log(data[0]);
     return (
         <>
             {isLoading ? (
@@ -151,7 +151,7 @@ const HomeScreen = ({ navigation }) => {
                         <TouchableOpacity
                             style={styles.profile}
                             onPress={() =>
-                                navigation.navigate("EditProfileScreen")
+                                navigation.navigate("EnterOTPScreen")
                             }
                         >
                             <Feather name="user" size={26} color="black" />
@@ -254,10 +254,8 @@ const HomeScreen = ({ navigation }) => {
                             bounces={false}
                             showsVerticalScrollIndicator={false}
                             data={data}
-                            key={(item) => {
-                                console.log(item);
-                                return item.user_id;
-                            }}
+                            keyExtractor={(item) => item.user_id}
+                            // key={(item) => item.user_id}
                             renderItem={({ index, item }) => (
                                 <CardComponent {...{ index, item, y }} />
                             )}
